@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borrowing Monitor | EquipTrack - IT Asset Lifecycle Portal</title>
+  <meta name="description" content="Real-time monitoring of borrowed and assigned IT equipment.">
+  <meta name="author" content="Group 4 - ETEEAP BSCS, Arellano University">
+  <meta name="theme-color" content="#070B16">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="EquipTrack logo" width="38" height="38"><span>Equip<span>Track</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html">Inventory</a></li>
+        <li><a href="lifecycle.html">Lifecycle</a></li>
+        <li><a href="borrow.html">Request</a></li>
+        <li><a href="monitor.html" class="active" aria-current="page">Monitor</a></li>
+        <li><a href="guide.html">Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch dark or light mode" title="Dark / Light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="borrow.html" class="btn btn-primary btn-sm">Request Asset</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Borrowing Monitor</div>
+        <span class="eyebrow"><span class="dot"></span> Updated in real time</span>
+        <h1>Borrowing <span class="grad-text">Monitor</span></h1>
+        <p>See every borrowed and assigned asset at a glance. Overdue items are flagged automatically. Mark items returned, extend due dates, or export the report.</p>
+      </div>
+    </section>
+    <section class="container">
+      <div class="grid grid-4" style="margin-bottom:22px">
+        <div class="card stat-card spot"><span class="ico c-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></span><div><b id="mActive">0</b><span>Active borrowings</span></div></div>
+        <div class="card stat-card spot"><span class="ico c-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><b id="mSoon">0</b><span>Due today / tomorrow</span></div></div>
+        <div class="card stat-card spot"><span class="ico c-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></span><div><b id="mOver">0</b><span>Overdue</span></div></div>
+        <div class="card stat-card spot"><span class="ico c-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b id="mRet">0</b><span>Returned</span></div></div>
+      </div>
+
+      <div class="card toolbar no-print">
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input class="input" id="mq" type="search" placeholder="Search ticket, employee, asset..." aria-label="Search requests"></div>
+        <div class="chips" id="mTabs">
+          <button class="chip active" data-f="all" type="button">All</button>
+          <button class="chip" data-f="ontime" type="button">On time</button>
+          <button class="chip" data-f="duesoon" type="button">Due soon</button>
+          <button class="chip" data-f="overdue" type="button">Overdue</button>
+          <button class="chip" data-f="returned" type="button">Returned</button>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Ticket</th><th>Employee</th><th>Asset</th><th>Borrowed</th><th>Due</th><th>Status</th><th class="no-print">Actions</th></tr></thead>
+          <tbody id="mBody"></tbody>
+        </table>
+      </div>
+      <div class="grid" style="grid-template-columns:1.6fr 1fr;margin-top:22px;align-items:start" id="monBottom">
+        <div class="card">
+          <h3>Borrowings by department</h3>
+          <div id="deptChart" style="margin-top:16px"></div>
+        </div>
+        <div class="card no-print">
+          <h3>Reports</h3>
+          <p class="muted" style="font-size:.88rem">Download the list for audits or print a hard copy.</p>
+          <div style="display:grid;gap:10px">
+            <button class="btn btn-primary btn-sm" id="exportCsv" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Export CSV (Excel)</button>
+            <button class="btn btn-ghost btn-sm" type="button" onclick="window.print()">Print report</button>
+            <button class="btn btn-danger btn-sm" id="resetDemo" type="button">Reset demo data</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="" width="38" height="38"><span>Equip<span>Track</span></span></a>
+          <p class="muted" style="margin-top:14px;font-size:.92rem">A corporate IT asset lifecycle portal: track every device from purchase to retirement, manage borrowing, and keep audits stress-free.</p>
+        </div>
+        <div>
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="assets.html">Asset Inventory</a></li>
+            <li><a href="borrow.html">Request Equipment</a></li>
+            <li><a href="monitor.html">Borrowing Monitor</a></li>
+            <li><a href="lifecycle.html">Lifecycle &amp; Depreciation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="guide.html">How It Works</a></li>
+            <li><a href="guide.html#policy">Borrowing Policy</a></li>
+            <li><a href="guide.html#faq">FAQs</a></li>
+            <li><a href="about.html#contact">Contact IT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="about.html#team">Group 4 Team</a></li>
+            <li><a href="about.html">ITC 122 - Web Design</a></li>
+            <li><a href="https://www.arellano.edu.ph" target="_blank" rel="noopener">Arellano University</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> EquipTrack &middot; Group 4, ETEEAP BSCS &middot; Arellano University</span>
+        <span>Final Project for ITC 122 &ndash; Introduction to Web Design</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/monitor.js"></script>
+</body>
+</html>

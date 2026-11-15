@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home | EquipTrack - IT Asset Lifecycle Portal</title>
+  <meta name="description" content="EquipTrack is a corporate IT asset lifecycle and equipment borrowing portal.">
+  <meta name="author" content="Group 4 - ETEEAP BSCS, Arellano University">
+  <meta name="theme-color" content="#070B16">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="EquipTrack logo" width="38" height="38"><span>Equip<span>Track</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="assets.html">Inventory</a></li>
+        <li><a href="lifecycle.html">Lifecycle</a></li>
+        <li><a href="borrow.html">Request</a></li>
+        <li><a href="monitor.html">Monitor</a></li>
+        <li><a href="guide.html">Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch dark or light mode" title="Dark / Light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="borrow.html" class="btn btn-primary btn-sm">Request Asset</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow"><span class="dot"></span> Live IT asset monitoring</span>
+          <h1>Every device. <span class="grad-text">Every stage.</span> One portal.</h1>
+          <p class="lead">EquipTrack follows each company asset from purchase to retirement. It tags it, assigns it, tracks who borrowed it, reminds you when it's due, and shows how much it's still worth.</p>
+          <div class="hero-cta">
+            <a href="borrow.html" class="btn btn-primary">Request Equipment <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+            <a href="assets.html" class="btn btn-ghost">Explore Inventory</a>
+          </div>
+          <div class="hero-trust">
+            <div><b id="heroValue">₱0</b>Portfolio value</div>
+            <div><b id="heroActive">0</b>Active borrowings</div>
+            <div><b>6</b>Lifecycle stages</div>
+          </div>
+        </div>
+        <div class="ring-wrap reveal" aria-hidden="true">
+          <svg class="ring" viewBox="0 0 400 400">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22D3EE"/><stop offset="1" stop-color="#A855F7"/></linearGradient>
+            </defs>
+            <circle cx="200" cy="200" r="185" fill="none" stroke="url(#g1)" stroke-opacity=".25" stroke-width="1" stroke-dasharray="3 9"/>
+            <g class="ring-spin">
+              <g fill="none" stroke-width="14" stroke-linecap="round">
+                <path d="M200 50 A150 150 0 0 1 342 152" stroke="#22D3EE"/>
+                <path d="M348 215 A150 150 0 0 1 248 342" stroke="#6366F1"/>
+                <path d="M185 349 A150 150 0 0 1 58 248" stroke="#A855F7"/>
+                <path d="M52 185 A150 150 0 0 1 152 58" stroke="#F59E0B"/>
+              </g>
+              <circle cx="200" cy="50" r="7" fill="#fff"/>
+            </g>
+            <circle cx="200" cy="200" r="118" fill="none" stroke="url(#g1)" stroke-opacity=".35" stroke-width="2"/>
+          </svg>
+          <div class="ring-center"><div><b id="heroTotal">0</b><small>Assets tracked</small></div></div>
+          <span class="ring-node" style="left:50%;top:3%"><i style="background:#22D3EE"></i>Procure</span>
+          <span class="ring-node" style="left:95%;top:50%"><i style="background:#6366F1"></i>Deploy</span>
+          <span class="ring-node" style="left:50%;top:97%"><i style="background:#A855F7"></i>Maintain</span>
+          <span class="ring-node" style="left:5%;top:50%"><i style="background:#F59E0B"></i>Retire</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE STATS -->
+    <section class="container">
+      <div class="grid grid-4">
+        <div class="card stat-card spot reveal"><span class="ico c-cyan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></span><div><b data-count="total">0</b><span>Total assets</span></div></div>
+        <div class="card stat-card spot reveal"><span class="ico c-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></span><div><b data-count="available">0</b><span>Available to borrow</span></div></div>
+        <div class="card stat-card spot reveal"><span class="ico c-indigo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span><div><b data-count="out">0</b><span>Assigned / borrowed</span></div></div>
+        <div class="card stat-card spot reveal"><span class="ico c-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg></span><div><b data-count="repair">0</b><span>In repair</span></div></div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Why EquipTrack</span>
+          <h2>Built for how <span class="grad-text">corporate IT</span> really works</h2>
+          <p class="muted">Spreadsheets get lost and stickers peel off. EquipTrack keeps one source of truth for every laptop, projector, phone and server your company owns.</p>
+        </div>
+        <div class="grid grid-3">
+          <article class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg></div><h3>Asset Register &amp; Tagging</h3><p class="muted">Every device gets a unique asset tag (like <b>ET-LPT-0001</b>), with specs, location, owner and purchase details in one record.</p></article>
+          <article class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div><h3>Borrow &amp; Assignment Requests</h3><p class="muted">Employees request equipment online. They pick an available asset, set dates, and get a ticket number instantly.</p></article>
+          <article class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 6-7"/></svg></div><h3>Real-time Monitoring</h3><p class="muted">A live dashboard shows what's out, who has it, and what's due or overdue, with one-click returns and CSV export.</p></article>
+          <article class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h8"/></svg></div><h3>Lifecycle &amp; Depreciation</h3><p class="muted">Know each asset's book value and when it should be refreshed, using straight-line depreciation.</p></article>
+          <article class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg></div><h3>Warranty &amp; Maintenance Alerts</h3><p class="muted">Expired warranties and devices in repair are flagged so IT can act before users are affected.</p></article>
+          <article class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Secure Disposal &amp; Audit Trail</h3><p class="muted">Every action is logged. Retired assets go through data wiping and proper e-waste disposal.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIFECYCLE PREVIEW -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">The asset lifecycle</span>
+          <h2>From purchase order to proper disposal</h2>
+        </div>
+        <div class="stepper reveal">
+          <a class="step" href="lifecycle.html#1"><span class="num">01</span><h3>Plan &amp; Procure</h3><p>Justify, budget and buy</p></a>
+          <a class="step" href="lifecycle.html#2"><span class="num">02</span><h3>Receive &amp; Tag</h3><p>Inspect, tag and register</p></a>
+          <a class="step" href="lifecycle.html#3"><span class="num">03</span><h3>Deploy &amp; Assign</h3><p>Image and hand over</p></a>
+          <a class="step" href="lifecycle.html#4"><span class="num">04</span><h3>Monitor &amp; Maintain</h3><p>Track, patch and repair</p></a>
+          <a class="step" href="lifecycle.html#5"><span class="num">05</span><h3>Refresh &amp; Upgrade</h3><p>Replace before it fails</p></a>
+          <a class="step" href="lifecycle.html#6"><span class="num">06</span><h3>Retire &amp; Dispose</h3><p>Wipe, donate or recycle</p></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACTIVITY + ATTENTION -->
+    <section class="section" style="padding-top:0">
+      <div class="container grid grid-2">
+        <div class="card reveal">
+          <h3 style="display:flex;align-items:center;gap:10px"><span class="eyebrow" style="margin:0;padding:4px 10px"><span class="dot"></span>Live</span> Recent activity</h3>
+          <ul class="feed" id="activityFeed"></ul>
+        </div>
+        <div class="card reveal">
+          <h3>Needs attention</h3>
+          <p class="muted" style="font-size:.9rem">Automatically flagged by EquipTrack today.</p>
+          <ul class="feed" id="attentionFeed"></ul>
+          <a href="monitor.html" class="btn btn-ghost btn-sm" style="margin-top:10px">Open Monitor <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALL TO ACTION -->
+    <section class="container">
+      <div class="cta-band reveal">
+        <h2>Need a laptop for a client pitch tomorrow?</h2>
+        <p class="muted" style="max-width:560px;margin:0 auto 24px">Check what's available, send a request in under a minute, and track it until it's back on the shelf.</p>
+        <a href="borrow.html" class="btn btn-primary">Start a request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg></a>
+        <a href="guide.html" class="btn btn-ghost" style="margin-left:8px">Watch how it works</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="" width="38" height="38"><span>Equip<span>Track</span></span></a>
+          <p class="muted" style="margin-top:14px;font-size:.92rem">A corporate IT asset lifecycle portal: track every device from purchase to retirement, manage borrowing, and keep audits stress-free.</p>
+        </div>
+        <div>
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="assets.html">Asset Inventory</a></li>
+            <li><a href="borrow.html">Request Equipment</a></li>
+            <li><a href="monitor.html">Borrowing Monitor</a></li>
+            <li><a href="lifecycle.html">Lifecycle &amp; Depreciation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="guide.html">How It Works</a></li>
+            <li><a href="guide.html#policy">Borrowing Policy</a></li>
+            <li><a href="guide.html#faq">FAQs</a></li>
+            <li><a href="about.html#contact">Contact IT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="about.html#team">Group 4 Team</a></li>
+            <li><a href="about.html">ITC 122 - Web Design</a></li>
+            <li><a href="https://www.arellano.edu.ph" target="_blank" rel="noopener">Arellano University</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> EquipTrack &middot; Group 4, ETEEAP BSCS &middot; Arellano University</span>
+        <span>Final Project for ITC 122 &ndash; Introduction to Web Design</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>

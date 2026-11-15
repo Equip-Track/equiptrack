@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Equipment | EquipTrack - IT Asset Lifecycle Portal</title>
+  <meta name="description" content="Request to borrow or be assigned company IT equipment.">
+  <meta name="author" content="Group 4 - ETEEAP BSCS, Arellano University">
+  <meta name="theme-color" content="#070B16">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="EquipTrack logo" width="38" height="38"><span>Equip<span>Track</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html">Inventory</a></li>
+        <li><a href="lifecycle.html">Lifecycle</a></li>
+        <li><a href="borrow.html" class="active" aria-current="page">Request</a></li>
+        <li><a href="monitor.html">Monitor</a></li>
+        <li><a href="guide.html">Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch dark or light mode" title="Dark / Light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="borrow.html" class="btn btn-primary btn-sm">Request Asset</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Request Equipment</div>
+        <span class="eyebrow">Self-service</span>
+        <h1>Request <span class="grad-text">Equipment</span></h1>
+        <p>Fill out the form to borrow or be assigned an IT asset. Your ticket preview updates as you type, and you get a ticket number when you submit.</p>
+      </div>
+    </section>
+    <section class="container grid" style="grid-template-columns:1.35fr .9fr;align-items:start" id="borrowLayout">
+      <form class="card" id="borrowForm" novalidate>
+        <h3 style="margin-bottom:18px">1. Employee information</h3>
+        <div class="form-grid">
+          <div><label class="lbl" for="empId">Employee ID <em>*</em></label><input class="input" id="empId" name="empId" placeholder="EMP-0000" maxlength="8" required><div class="err">Use the format EMP-0000.</div></div>
+          <div><label class="lbl" for="fullName">Full name <em>*</em></label><input class="input" id="fullName" name="fullName" placeholder="Juan Dela Cruz" required><div class="err">Please enter your full name.</div></div>
+          <div><label class="lbl" for="email">Company email <em>*</em></label><input class="input" id="email" name="email" type="email" placeholder="juan.delacruz@company.com" required><div class="err">Enter a valid email address.</div></div>
+          <div><label class="lbl" for="dept">Department <em>*</em></label><select class="input" id="dept" name="dept" required><option value="">Select department</option></select><div class="err">Select your department.</div></div>
+        </div>
+
+        <h3 style="margin:30px 0 14px">2. Request type</h3>
+        <div class="radio-group">
+          <label class="radio-card"><input type="radio" name="type" value="Short-term Borrow" checked><span><b>Short-term Borrow</b>Up to 14 days</span></label>
+          <label class="radio-card"><input type="radio" name="type" value="Long-term Assignment"><span><b>Long-term Assignment</b>Up to 90 days</span></label>
+          <label class="radio-card"><input type="radio" name="type" value="Replacement"><span><b>Replacement</b>For a broken unit</span></label>
+        </div>
+
+        <h3 style="margin:30px 0 14px">3. Equipment &amp; schedule</h3>
+        <div class="form-grid">
+          <div class="full"><label class="lbl" for="asset">Available asset <em>*</em></label><select class="input" id="asset" name="asset" required></select><div class="err">Choose an available asset.</div></div>
+          <div><label class="lbl" for="from">Borrow date <em>*</em></label><input class="input" id="from" name="from" type="date" required><div class="err">Borrow date cannot be in the past.</div></div>
+          <div><label class="lbl" for="to">Return date <em>*</em></label><input class="input" id="to" name="to" type="date" required><div class="err" id="toErr">Return date must be after the borrow date.</div></div>
+          <div class="full"><label class="lbl" for="purpose">Purpose <em>*</em></label><textarea class="input" id="purpose" name="purpose" maxlength="240" placeholder="e.g. Client presentation at BGC on Friday"></textarea><small class="muted"><span id="purposeCount">0</span>/240</small><div class="err">Tell IT why you need the equipment (at least 10 characters).</div></div>
+        </div>
+
+        <h3 style="margin:30px 0 14px">4. Agreement</h3>
+        <label class="check"><input type="checkbox" id="agree"><span>I agree to the <a href="guide.html#policy" target="_blank">Equipment Borrowing Policy</a> and will return the asset in good condition.</span></label>
+        <label class="check" style="margin-top:10px"><input type="checkbox" id="privacy"><span>I consent to the processing of my information under the Data Privacy Act of 2012 (RA 10173).</span></label>
+        <div class="err" id="agreeErr">Please accept both agreements.</div>
+
+        <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap">
+          <button type="submit" class="btn btn-primary">Submit Request <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+          <button type="reset" class="btn btn-ghost">Clear form</button>
+        </div>
+      </form>
+
+      <aside class="ticket" aria-live="polite">
+        <div class="ticket-head"><small style="opacity:.85;letter-spacing:2px">REQUEST PREVIEW</small><h3 id="tNo">ET-REQ-2026-####</h3></div>
+        <div class="ticket-body">
+          <div class="ticket-row"><span>Employee</span><b id="tName">-</b></div>
+          <div class="ticket-row"><span>Department</span><b id="tDept">-</b></div>
+          <div class="ticket-row"><span>Type</span><b id="tType">Short-term Borrow</b></div>
+          <div class="ticket-row"><span>Asset</span><b id="tAsset">-</b></div>
+          <div class="ticket-row"><span>Schedule</span><b id="tDates">-</b></div>
+          <div class="ticket-row"><span>Duration</span><b id="tDays">-</b></div>
+          <div class="barcode" id="tBarcode" style="margin:18px auto 6px"></div>
+          <p class="muted" style="text-align:center;font-size:.8rem;margin:0">Show this ticket at the IT counter (3F) to claim your equipment.</p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- Success modal -->
+    <div class="modal-backdrop" id="successModal" role="dialog" aria-modal="true">
+      <div class="modal" style="text-align:center;max-width:480px">
+        <div class="feature-icon c-green" style="margin:0 auto 18px;width:70px;height:70px;border-radius:22px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h2>Request submitted!</h2>
+        <p class="muted">Your ticket number is</p>
+        <p style="font:800 1.5rem var(--font-head)" class="grad-text" id="sNo"></p>
+        <p class="muted" style="font-size:.9rem">IT will confirm within 2 working hours. You can track it on the Monitor page.</p>
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap">
+          <a href="monitor.html" class="btn btn-primary">Track my request</a>
+          <button class="btn btn-ghost" type="button" id="sClose">New request</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="" width="38" height="38"><span>Equip<span>Track</span></span></a>
+          <p class="muted" style="margin-top:14px;font-size:.92rem">A corporate IT asset lifecycle portal: track every device from purchase to retirement, manage borrowing, and keep audits stress-free.</p>
+        </div>
+        <div>
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="assets.html">Asset Inventory</a></li>
+            <li><a href="borrow.html">Request Equipment</a></li>
+            <li><a href="monitor.html">Borrowing Monitor</a></li>
+            <li><a href="lifecycle.html">Lifecycle &amp; Depreciation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="guide.html">How It Works</a></li>
+            <li><a href="guide.html#policy">Borrowing Policy</a></li>
+            <li><a href="guide.html#faq">FAQs</a></li>
+            <li><a href="about.html#contact">Contact IT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="about.html#team">Group 4 Team</a></li>
+            <li><a href="about.html">ITC 122 - Web Design</a></li>
+            <li><a href="https://www.arellano.edu.ph" target="_blank" rel="noopener">Arellano University</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> EquipTrack &middot; Group 4, ETEEAP BSCS &middot; Arellano University</span>
+        <span>Final Project for ITC 122 &ndash; Introduction to Web Design</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/borrow.js"></script>
+</body>
+</html>

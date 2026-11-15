@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works | EquipTrack - IT Asset Lifecycle Portal</title>
+  <meta name="description" content="Video guide, borrowing policy and FAQs for EquipTrack.">
+  <meta name="author" content="Group 4 - ETEEAP BSCS, Arellano University">
+  <meta name="theme-color" content="#070B16">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="EquipTrack logo" width="38" height="38"><span>Equip<span>Track</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html">Inventory</a></li>
+        <li><a href="lifecycle.html">Lifecycle</a></li>
+        <li><a href="borrow.html">Request</a></li>
+        <li><a href="monitor.html">Monitor</a></li>
+        <li><a href="guide.html" class="active" aria-current="page">Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch dark or light mode" title="Dark / Light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="borrow.html" class="btn btn-primary btn-sm">Request Asset</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / How It Works</div>
+        <span class="eyebrow">Guide</span>
+        <h1>How <span class="grad-text">EquipTrack</span> works</h1>
+        <p>Watch the short explainer video, follow the five steps, and read the borrowing policy before you request equipment.</p>
+      </div>
+    </section>
+
+    <section class="container grid" style="grid-template-columns:1.4fr .9fr;align-items:start" id="guideTop">
+      <div class="card video-card reveal">
+        <video controls preload="metadata" poster="images/video-poster.jpg">
+          <source src="media/equiptrack-explainer.mp4" type="video/mp4">
+          Your browser does not support the HTML5 video tag.
+        </video>
+        <div class="cap"><h3 style="margin:0">EquipTrack in 30 seconds</h3><p class="muted" style="margin:4px 0 0;font-size:.9rem">An animated walkthrough of the six stages of the IT asset lifecycle.</p></div>
+      </div>
+      <div class="grid" style="gap:22px">
+        <div class="card audio-card reveal">
+          <div style="display:flex;justify-content:space-between;align-items:center"><h3 style="margin:0">Focus ambience</h3><div class="eq" id="eq"><i></i><i></i><i></i><i></i><i></i></div></div>
+          <p class="muted" style="font-size:.88rem;margin:6px 0 0">Calm background audio for reading the guide.</p>
+          <audio controls loop preload="none" id="ambience">
+            <source src="media/ambience.mp3" type="audio/mpeg">
+            Your browser does not support the HTML5 audio tag.
+          </audio>
+        </div>
+        <div class="card audio-card reveal">
+          <h3 style="margin:0">Notification sound</h3>
+          <p class="muted" style="font-size:.88rem;margin:6px 0 0">You'll hear this chime when a request is submitted.</p>
+          <audio controls preload="none"><source src="media/chime.wav" type="audio/wav"></audio>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">5 easy steps</span><h2>Borrowing equipment, start to finish</h2></div>
+        <div class="grid" style="grid-template-columns:repeat(5,1fr)" id="stepsGrid">
+          <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>1. Find</h3><p class="muted">Search the <a href="assets.html">Inventory</a> for an available asset.</p></div>
+          <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></div><h3>2. Request</h3><p class="muted">Fill out the <a href="borrow.html">Request form</a> and get a ticket.</p></div>
+          <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><h3>3. Approve</h3><p class="muted">Your manager and IT confirm the request.</p></div>
+          <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L2 12V2h10l8.6 8.6a2 2 0 0 1 0 2.8z"/><circle cx="7" cy="7" r="1.5"/></svg></div><h3>4. Claim</h3><p class="muted">Show your ticket at the IT counter on 3F.</p></div>
+          <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.8a1.8 1.8 0 0 1-1.6-2.7L7.5 9M14 5l-2-3-2 3M11.6 2.6l5 8.6M17 19h2.3a1.8 1.8 0 0 0 1.5-2.7L19 13M14 22l-2-3 2-3M12 19h7"/></svg></div><h3>5. Return</h3><p class="muted">Return on time. IT inspects it and marks it returned.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container grid grid-2" style="align-items:start">
+      <div class="card reveal" id="policy">
+        <span class="eyebrow">Policy</span>
+        <h2>Equipment Borrowing Policy</h2>
+        <ol class="policy">
+          <li>Only regular employees with a valid Employee ID may borrow equipment.</li>
+          <li>Short-term borrowing is limited to <b>14 days</b>; long-term assignments to <b>90 days</b>, renewable.</li>
+          <li>Requests must be filed at least <b>one working day</b> before the borrow date.</li>
+          <li>The borrower is responsible for the asset until IT marks it as returned.</li>
+          <li>Lost or damaged equipment must be reported to IT within <b>24 hours</b>.</li>
+          <li>Do not install unlicensed software or remove asset tags.</li>
+          <li>Company data must be saved to the shared drive, not the local disk.</li>
+          <li>Repeated overdue returns may suspend borrowing privileges for 30 days.</li>
+        </ol>
+      </div>
+      <div class="faq reveal" id="faq">
+        <span class="eyebrow">FAQ</span>
+        <h2>Frequently asked questions</h2>
+        <details open><summary>Who can see my request?</summary><p>Only you, your department head and the IT asset team. Personal data is handled under the Data Privacy Act of 2012.</p></details>
+        <details><summary>Can I extend my borrowing period?</summary><p>Yes. Ask IT before the due date and they can extend it by 7 days from the Monitor page, if no one else has reserved the asset.</p></details>
+        <details><summary>What if the asset I need is not available?</summary><p>Pick a similar asset from the Inventory, or ask IT to notify you when it's returned.</p></details>
+        <details><summary>What happens to old equipment?</summary><p>It goes through the Retire &amp; Dispose stage: secure data wipe, then redeployment, donation, or e-waste recycling.</p></details>
+        <details><summary>Does EquipTrack work on my phone?</summary><p>Yes. The portal is fully responsive and works on phones, tablets and desktops.</p></details>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="" width="38" height="38"><span>Equip<span>Track</span></span></a>
+          <p class="muted" style="margin-top:14px;font-size:.92rem">A corporate IT asset lifecycle portal: track every device from purchase to retirement, manage borrowing, and keep audits stress-free.</p>
+        </div>
+        <div>
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="assets.html">Asset Inventory</a></li>
+            <li><a href="borrow.html">Request Equipment</a></li>
+            <li><a href="monitor.html">Borrowing Monitor</a></li>
+            <li><a href="lifecycle.html">Lifecycle &amp; Depreciation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="guide.html">How It Works</a></li>
+            <li><a href="guide.html#policy">Borrowing Policy</a></li>
+            <li><a href="guide.html#faq">FAQs</a></li>
+            <li><a href="about.html#contact">Contact IT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="about.html#team">Group 4 Team</a></li>
+            <li><a href="about.html">ITC 122 - Web Design</a></li>
+            <li><a href="https://www.arellano.edu.ph" target="_blank" rel="noopener">Arellano University</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> EquipTrack &middot; Group 4, ETEEAP BSCS &middot; Arellano University</span>
+        <span>Final Project for ITC 122 &ndash; Introduction to Web Design</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/guide.js"></script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="EquipTrack logo mark">
+  <defs>
+    <linearGradient id="et-core" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#6366F1"/>
+    </linearGradient>
+  </defs>
+  <!-- Lifecycle ring: 4 arcs = Procure, Deploy, Maintain, Retire -->
+  <g fill="none" stroke-width="9" stroke-linecap="round">
+    <path d="M60 10 A50 50 0 0 1 107.5 44.5" stroke="#22D3EE"/>
+    <path d="M110 64 A50 50 0 0 1 75.5 107.5" stroke="#6366F1"/>
+    <path d="M56 110 A50 50 0 0 1 12.5 75.5" stroke="#A855F7"/>
+    <path d="M10 56 A50 50 0 0 1 44.5 12.5" stroke="#F59E0B"/>
+  </g>
+  <!-- arrow heads showing the cycle direction -->
+  <g fill="#22D3EE"><path d="M100 36 l13 3 -4 13z"/></g>
+  <g fill="#6366F1"><path d="M84 104 l-3 13 -12 -6z"/></g>
+  <g fill="#A855F7"><path d="M20 84 l-13 -3 5 -12z"/></g>
+  <g fill="#F59E0B"><path d="M36 16 l3 -13 12 6z"/></g>
+  <!-- Asset tag in the middle -->
+  <path d="M38 40 h30 l16 16 v24 a6 6 0 0 1 -6 6 h-40 a6 6 0 0 1 -6 -6 v-34 a6 6 0 0 1 6 -6z" fill="url(#et-core)"/>
+  <circle cx="44" cy="48" r="4" fill="#0B1220"/>
+  <path d="M46 66 l9 9 17 -18" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

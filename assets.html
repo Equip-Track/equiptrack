@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Inventory | EquipTrack - IT Asset Lifecycle Portal</title>
+  <meta name="description" content="Search and filter the corporate IT asset register.">
+  <meta name="author" content="Group 4 - ETEEAP BSCS, Arellano University">
+  <meta name="theme-color" content="#070B16">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="EquipTrack logo" width="38" height="38"><span>Equip<span>Track</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html" class="active" aria-current="page">Inventory</a></li>
+        <li><a href="lifecycle.html">Lifecycle</a></li>
+        <li><a href="borrow.html">Request</a></li>
+        <li><a href="monitor.html">Monitor</a></li>
+        <li><a href="guide.html">Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch dark or light mode" title="Dark / Light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="borrow.html" class="btn btn-primary btn-sm">Request Asset</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Asset Inventory</div>
+        <span class="eyebrow">Asset register</span>
+        <h1>Asset <span class="grad-text">Inventory</span></h1>
+        <p>Search the company's IT equipment by name, tag, owner or location. Click any asset to see its lifecycle history, warranty and current book value.</p>
+      </div>
+    </section>
+    <section class="container">
+      <div class="card toolbar">
+        <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg><input class="input" id="q" type="search" placeholder="Search assets, tags, people, locations..." aria-label="Search assets"><kbd>/</kbd></div>
+        <select class="input" id="statusFilter" style="width:auto" aria-label="Filter by status">
+          <option value="all">All statuses</option>
+          <option value="available">Available</option>
+          <option value="assigned">Assigned</option>
+          <option value="borrowed">Borrowed</option>
+          <option value="repair">In Repair</option>
+          <option value="retired">Retired</option>
+        </select>
+        <select class="input" id="sortBy" style="width:auto" aria-label="Sort assets">
+          <option value="id">Sort: Asset tag</option>
+          <option value="name">Sort: Name (A-Z)</option>
+          <option value="value">Sort: Book value (high-low)</option>
+          <option value="age">Sort: Oldest first</option>
+        </select>
+      </div>
+      <div class="chips" id="catChips" style="margin-bottom:22px"></div>
+      <p class="muted" id="resultCount" style="font-size:.9rem"></p>
+      <div class="asset-grid" id="assetGrid"></div>
+    </section>
+
+    <!-- Asset detail modal -->
+    <div class="modal-backdrop" id="assetModal" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+      <div class="modal" id="modalBody"></div>
+    </div>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="" width="38" height="38"><span>Equip<span>Track</span></span></a>
+          <p class="muted" style="margin-top:14px;font-size:.92rem">A corporate IT asset lifecycle portal: track every device from purchase to retirement, manage borrowing, and keep audits stress-free.</p>
+        </div>
+        <div>
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="assets.html">Asset Inventory</a></li>
+            <li><a href="borrow.html">Request Equipment</a></li>
+            <li><a href="monitor.html">Borrowing Monitor</a></li>
+            <li><a href="lifecycle.html">Lifecycle &amp; Depreciation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="guide.html">How It Works</a></li>
+            <li><a href="guide.html#policy">Borrowing Policy</a></li>
+            <li><a href="guide.html#faq">FAQs</a></li>
+            <li><a href="about.html#contact">Contact IT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="about.html#team">Group 4 Team</a></li>
+            <li><a href="about.html">ITC 122 - Web Design</a></li>
+            <li><a href="https://www.arellano.edu.ph" target="_blank" rel="noopener">Arellano University</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> EquipTrack &middot; Group 4, ETEEAP BSCS &middot; Arellano University</span>
+        <span>Final Project for ITC 122 &ndash; Introduction to Web Design</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/assets.js"></script>
+</body>
+</html>

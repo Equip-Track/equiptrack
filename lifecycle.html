@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asset Lifecycle | EquipTrack - IT Asset Lifecycle Portal</title>
+  <meta name="description" content="Interactive IT asset lifecycle stages and depreciation planner.">
+  <meta name="author" content="Group 4 - ETEEAP BSCS, Arellano University">
+  <meta name="theme-color" content="#070B16">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- ===== NAVIGATION BAR ===== -->
+  <header class="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="EquipTrack logo" width="38" height="38"><span>Equip<span>Track</span></span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="assets.html">Inventory</a></li>
+        <li><a href="lifecycle.html" class="active" aria-current="page">Lifecycle</a></li>
+        <li><a href="borrow.html">Request</a></li>
+        <li><a href="monitor.html">Monitor</a></li>
+        <li><a href="guide.html">Guide</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="Switch dark or light mode" title="Dark / Light mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+        <a href="borrow.html" class="btn btn-primary btn-sm">Request Asset</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" type="button" aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="page-head">
+      <div class="container">
+        <div class="breadcrumb"><a href="index.html">Home</a> / Asset Lifecycle</div>
+        <span class="eyebrow">ITAM best practice</span>
+        <h1>The IT Asset <span class="grad-text">Lifecycle</span></h1>
+        <p>Click each stage to see what happens, who is responsible, and the checklist IT follows. Then use the calculator to plan when an asset should be replaced.</p>
+      </div>
+    </section>
+    <section class="container">
+      <div class="lc-tabs" id="lcTabs" role="tablist"></div>
+      <div id="lcPanel"></div>
+    </section>
+
+    <!-- Depreciation calculator -->
+    <section class="section" id="calculator">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Interactive tool</span>
+          <h2>Depreciation &amp; <span class="grad-text">Refresh Planner</span></h2>
+          <p class="muted">Enter an asset's cost and useful life to see its yearly value (straight-line method) and the recommended refresh date.</p>
+        </div>
+        <div class="grid grid-2">
+          <form class="card reveal" id="calcForm" onsubmit="return false">
+            <div class="form-grid">
+              <div class="full"><label class="lbl" for="cAsset">Load from inventory (optional)</label><select class="input" id="cAsset"><option value="">- Custom values -</option></select></div>
+              <div><label class="lbl" for="cCost">Purchase cost (₱)</label><input class="input" id="cCost" type="number" min="1000" step="500" value="62500"></div>
+              <div><label class="lbl" for="cSalvage">Salvage value (%)</label><input class="input" id="cSalvage" type="number" min="0" max="50" value="10"></div>
+              <div><label class="lbl" for="cLife">Useful life (years)</label><input class="input" id="cLife" type="range" min="2" max="8" value="4"><small class="muted"><b id="cLifeOut">4</b> years</small></div>
+              <div><label class="lbl" for="cDate">Purchase date</label><input class="input" id="cDate" type="date" value="2024-02-12"></div>
+            </div>
+          </form>
+          <div class="card reveal">
+            <div class="grid grid-2" style="gap:14px">
+              <div><small class="muted">Annual depreciation</small><div class="result-big" id="rAnnual">-</div></div>
+              <div><small class="muted">Book value today</small><div class="result-big grad-text" id="rNow">-</div></div>
+              <div><small class="muted">Recommended refresh</small><div style="font:700 1.1rem var(--font-head);color:var(--heading)" id="rRefresh">-</div></div>
+              <div><small class="muted">Life used</small><div class="bar" style="margin-top:10px"><span id="rLifeBar" style="width:0"></span></div><small class="muted" id="rLife">-</small></div>
+            </div>
+            <div class="chart" id="chart"></div>
+            <div class="chart-labels" id="chartLabels"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Disposal options -->
+    <section class="container">
+      <div class="section-head reveal"><span class="eyebrow">End of life</span><h2>Responsible disposal options</h2></div>
+      <div class="grid grid-4">
+        <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.8a1.8 1.8 0 0 1-1.6-2.7L7.5 9M14 5l-2-3-2 3M11.6 2.6l5 8.6M17 19h2.3a1.8 1.8 0 0 0 1.5-2.7L19 13M14 22l-2-3 2-3M12 19h7"/></svg></div><h3>Redeploy</h3><p class="muted">Move still-usable devices to staff with lighter workloads or training rooms.</p></div>
+        <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></div><h3>Donate</h3><p class="muted">Give wiped devices to partner schools and NGOs as part of CSR programs.</p></div>
+        <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div><h3>Certified Data Wipe</h3><p class="muted">Erase drives securely and keep a certificate to comply with the Data Privacy Act of 2012.</p></div>
+        <div class="card hover spot reveal"><div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg></div><h3>E-waste Recycling</h3><p class="muted">Send broken units to DENR-accredited e-waste recyclers instead of the trash.</p></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="index.html" class="brand"><img src="images/logo-mark.svg" alt="" width="38" height="38"><span>Equip<span>Track</span></span></a>
+          <p class="muted" style="margin-top:14px;font-size:.92rem">A corporate IT asset lifecycle portal: track every device from purchase to retirement, manage borrowing, and keep audits stress-free.</p>
+        </div>
+        <div>
+          <h4>Portal</h4>
+          <ul>
+            <li><a href="assets.html">Asset Inventory</a></li>
+            <li><a href="borrow.html">Request Equipment</a></li>
+            <li><a href="monitor.html">Borrowing Monitor</a></li>
+            <li><a href="lifecycle.html">Lifecycle &amp; Depreciation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="guide.html">How It Works</a></li>
+            <li><a href="guide.html#policy">Borrowing Policy</a></li>
+            <li><a href="guide.html#faq">FAQs</a></li>
+            <li><a href="about.html#contact">Contact IT</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Project</h4>
+          <ul>
+            <li><a href="about.html#team">Group 4 Team</a></li>
+            <li><a href="about.html">ITC 122 - Web Design</a></li>
+            <li><a href="https://www.arellano.edu.ph" target="_blank" rel="noopener">Arellano University</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; <span id="year">2026</span> EquipTrack &middot; Group 4, ETEEAP BSCS &middot; Arellano University</span>
+        <span>Final Project for ITC 122 &ndash; Introduction to Web Design</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/lifecycle.js"></script>
+</body>
+</html>
